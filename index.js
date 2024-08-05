@@ -1,11 +1,11 @@
-// src/index.js
 import express from "express";
+import logger from "morgan";
 // import dotenv from "dotenv";
 
 // dotenv.config();
 
 const app = express();
-// const port = process.env.PORT || 3000;
+app.use(logger("dev"));
 
 app.get("/", (req, res) => {
   res.send("Express Server Update");
