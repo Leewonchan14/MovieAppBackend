@@ -1,3 +1,5 @@
+export const MOVIE_GENRE = ['ACTION', 'COMEDY', 'ROMANCE'];
+
 export default {
   movie:
       `create table if not exists movie
