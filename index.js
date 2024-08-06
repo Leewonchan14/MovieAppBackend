@@ -2,7 +2,7 @@ import express from "express";
 import logger from "morgan";
 import conn from "./src/db/conn.js";
 import errorHandler from "./src/error/errorHandler.js";
-import router from "./src/router/router.js"
+import movieRouter from "./src/router/movieRouter.js"
 
 const app = express();
 
@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(logger("dev"));
 
-app.use("/api" ,router);
+app.use("/api" ,movieRouter);
 
 app.use(errorHandler);
 
