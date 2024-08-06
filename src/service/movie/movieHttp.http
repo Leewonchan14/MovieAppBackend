@@ -13,7 +13,7 @@ Content-Type: application/json
 
 {
   "title": "this is movie title",
-  "genre" : "ACTION"
+  "genre": "ACTION"
 }
 
 ###
@@ -21,5 +21,5 @@ DELETE localhost:4000/api/movie
 Content-Type: application/json
 
 {
-  "movieId" : 1
+  "movieId": 1
 }

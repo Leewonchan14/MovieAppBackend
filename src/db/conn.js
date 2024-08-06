@@ -1,7 +1,6 @@
 import mysql from "mysql2/promise";
 import tables from "./tables.js";
 
-
 class DB {
   static pool = null;
 
@@ -23,8 +22,8 @@ class DB {
       connectionLimit: 10,
       queueLimit: 0,
       maxIdle: 10,
-    })
-  }
+    });
+  };
 }
 
 export default {
@@ -41,8 +40,8 @@ export default {
         console.log(`${table} table is created is not exist`);
       }
     } catch (error) {
-      console.log("Error creating tables!")
+      console.log("Error creating tables!");
       console.error(error);
     }
-  }
-}
+  },
+};

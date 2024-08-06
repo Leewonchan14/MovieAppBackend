@@ -2,7 +2,7 @@ import CustomError from "./CustomError.js";
 
 export default (err, req, res, next) => {
   if (err instanceof CustomError) {
-    const {status, message} = err
+    const { status, message } = err;
     return res.status(status).json({
       message,
       body: req.body,
