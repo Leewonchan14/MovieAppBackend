@@ -1,5 +1,7 @@
 ### GET request to example server
-GET localhost:4000/api/movie
+@page = 0
+@pageSize = 10
+GET localhost:4000/api/movie?page={{page}}&pageSize={{pageSize}}
 
 ###
 @movieId = 1

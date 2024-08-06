@@ -6,11 +6,13 @@ export default (err, req, res, next) => {
     return res.status(status).json({
       message,
       body: req.body,
+      query: req.query,
     });
   }
 
   res.status(500).json({
     message: err.message,
     body: req.body,
+    query: req.query,
   });
 };

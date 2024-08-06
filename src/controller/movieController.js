@@ -7,7 +7,7 @@ export default {
   getMovieDetail: async (req, res, next) => {
     const {movieId} = req.params;
 
-    if (!isFinite(movieId)) {
+    if (isNaN(movieId)) {
       throw CustomError.BAD_REQUEST;
     }
 
@@ -32,7 +32,7 @@ export default {
   deleteMovie: async (req, res, next) => {
     const {movieId} = req.body;
 
-    if (!isFinite(movieId)) {
+    if (isNaN(movieId)) {
       throw CustomError.BAD_REQUEST;
     }
 
@@ -40,5 +40,17 @@ export default {
     res.status(200).json({
       message: "ok",
     })
+  },
+
+  getMovieList: async (req, res, next) => {
+    const {page, pageSize} = req.query;
+
+    if (isNaN(page) || isNaN(pageSize)) {
+      throw CustomError.BAD_REQUEST_PAGINATION;
+    }
+
+    const findMovies = await movieService.getMovieList({page, pageSize});
+
+    res.status(200).json(findMovies.map(movieConverter.toMovieDetail));
   }
 }

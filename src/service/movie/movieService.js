@@ -2,6 +2,10 @@ import movieRepository from "../../repository/movieRepository.js";
 import CustomError from "../../error/CustomError.js";
 
 export default {
+  getMovieList : async ({page, pageSize}) => {
+    return await movieRepository.findAll({page, pageSize, orderBy: "order by createdAt desc"});
+  },
+
   getMovieDetail: async ({movieId}) => {
     const findMovie = await movieRepository.findById({movieId})
     if (!findMovie || !!findMovie.isDeleted === true) {

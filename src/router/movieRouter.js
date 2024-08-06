@@ -6,6 +6,7 @@ const movieRouter = express.Router({
   mergeParams: false,
 });
 
+movieRouter.get("/movie", movieController.getMovieList);
 movieRouter.get("/movie/:movieId", movieController.getMovieDetail);
 
 movieRouter.post("/movie", movieController.createMovie);
