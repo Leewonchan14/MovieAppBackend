@@ -1,0 +1,23 @@
+### GET request to example server
+GET localhost:4000/api/movie
+
+###
+@movieId = 1
+GET localhost:4000/api/movie/{{movieId}}
+
+###
+POST localhost:4000/api/movie
+Content-Type: application/json
+
+{
+  "title": "this is movie title",
+  "genre" : "ACTION"
+}
+
+###
+DELETE localhost:4000/api/movie
+Content-Type: application/json
+
+{
+  "movieId" : 1
+}
