@@ -5,6 +5,12 @@ import movieConverter from "../converter/MovieConverter.js";
 
 export default {
   getMovieDetail: async (req, res, next) => {
+    /*
+    #swagger.responses[200] = {
+      schema: {$ref: "#/definitions/MovieDetail"}
+    }
+    */
+
     const { movieId } = req.params;
 
     if (isNaN(movieId)) {

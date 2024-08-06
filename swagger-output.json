@@ -1,0 +1,136 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "My API",
+    "description": "Description",
+    "version": "1.0.0"
+  },
+  "host": "localhost:4000",
+  "basePath": "/api",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/movie": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "example": "any"
+                },
+                "genre": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "movieId": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/movie/{movieId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "movieId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/MovieDetail"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "MovieDetail": {
+      "type": "object",
+      "properties": {
+        "movieId": {
+          "type": "number",
+          "example": 0
+        },
+        "title": {
+          "type": "string",
+          "example": "string"
+        },
+        "genre": {
+          "type": "string",
+          "example": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "example": "2024-08-06T07:33:53.509Z"
+        },
+        "updatedAt": {
+          "type": "string",
+          "example": "2024-08-06T07:33:53.509Z"
+        },
+        "isDeleted": {
+          "type": "boolean",
+          "example": false
+        }
+      }
+    }
+  }
+}

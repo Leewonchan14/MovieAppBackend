@@ -3,6 +3,8 @@ import logger from "morgan";
 import conn from "./src/db/conn.js";
 import errorHandler from "./src/error/errorHandler.js";
 import movieRouter from "./src/router/movieRouter.js";
+import swaggerUi from "swagger-ui-express";
+import swaggerFile from "./swagger-output.json" with { type: "json" };
 
 const app = express();
 
@@ -10,6 +12,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(logger("dev"));
+app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 app.use("/api", movieRouter);
 

@@ -4,7 +4,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon --watch index.js --watch src/ --inspect=0.0.0.0",
+    "dev": "nodemon --watch index.js --watch swagger-output.json --watch src/ --inspect=0.0.0.0",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -17,6 +17,8 @@
     "morgan": "^1.10.0",
     "mysql2": "^3.11.0",
     "nodemon": "^3.1.4",
-    "prettier": "^3.3.3"
+    "prettier": "^3.3.3",
+    "swagger-autogen": "^2.23.7",
+    "swagger-ui-express": "^5.0.1"
   }
 }
