@@ -28,18 +28,19 @@ class DB {
 }
 
 export default {
-  async execute(queryString, params) {
+  async execute(queryString = "", params = []) {
     const [rows, fields] = await DB.getPool().execute(queryString, params);
+    console.log(queryString);
     return rows;
   },
 
   async initTables() {
     try {
-      for(let [table, schema] of Object.entries(tables)){
-        await this.execute(schema);
-        console.log(`Table ${table} created!`);
+      for (let [table, schema] of Object.entries(tables)) {
+        await DB.getPool().execute(schema);
+        console.log(`${table} table is created is not exist`);
       }
-    } catch (error){
+    } catch (error) {
       console.log("Error creating tables!")
       console.error(error);
     }
