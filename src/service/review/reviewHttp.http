@@ -1,0 +1,16 @@
+### GET request to example server
+POST http://localhost:4000/api/review
+Content-Type: application/json
+
+{
+  "movieId": 1,
+  "content": "이 영화 재밌네요!!",
+  "rating" : 3
+}
+
+###
+@movieId=3
+@page=0
+@pageSize=10
+GET http://localhost:4000/api/review/movie/{{movieId}}?page={{page}}&pageSize={{pageSize}}
+Content-Type: application/json

@@ -15,8 +15,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(logger("dev"));
 app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
-app.use("/api", movieRouter);
 app.use("/api/movie", movieRouter);
+app.use("/api/review", reviewRouter);
 
 app.use(errorHandler);
 

@@ -17,7 +17,6 @@ export default {
        (
            reviewId  bigint primary key auto_increment,
            movieId   bigint,
-           userId    bigint,
            content   text,
            rating    float,
            isDeleted boolean   default false,
