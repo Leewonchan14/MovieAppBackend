@@ -9,8 +9,12 @@ Content-Type: application/json
 }
 
 ###
-@movieId=3
+@movieId=2
 @page=0
 @pageSize=10
-GET http://localhost:4000/api/review/movie/{{movieId}}?page={{page}}&pageSize={{pageSize}}
+@minRating=ab
+GET http://localhost:4000/api/review/movie/{{movieId}}?page={{page}}&pageSize={{pageSize}}&minRating={{minRating}}
 Content-Type: application/json
+
+###
+GET localhost:4000/api/review/1

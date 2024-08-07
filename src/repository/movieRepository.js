@@ -1,4 +1,5 @@
 import conn from "../db/conn.js";
+import reviewRepository from "./reviewRepository.js";
 
 export default {
   findAll: async ({ page, pageSize, orderBy }) => {

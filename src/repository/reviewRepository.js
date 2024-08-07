@@ -10,15 +10,27 @@ export default {
     return insertId;
   },
 
-  async findByMovieId({ movieId, page, pageSize, orderBy }) {
+  async findByMovieId({ movieId, page, pageSize, minRating, orderBy }) {
     return await conn.execute(
       `select *
        from review
        where movieId = ?
+         and rating >= ?
          and isDeleted = 0 ${orderBy}
        limit ${page * pageSize}, ${pageSize};
-      `
-      , [movieId]
+      `,
+      [movieId, minRating]
     );
+  },
+
+  async findById({ reviewId }) {
+    let findReviews = await conn.execute(
+      `select *
+       from review
+       where isDeleted = 0
+         and reviewId = ?`,
+      [reviewId]
+    );
+    return findReviews[0];
   },
 };

@@ -26,6 +26,7 @@ export default {
 
     if (
       typeof title !== "string" ||
+      title.trim().length === 0 ||
       typeof genre !== "string" ||
       !MOVIE_GENRE.includes(genre)
     ) {
