@@ -7,10 +7,9 @@ export const MovieGenre = (key, value) => {
     throw new CustomError(400, `${key}는 장르에 없습니다.`);
 };
 
-export const MovieIdExist = async (key, value) => {
-  const movieId = value;
+export const MovieIdExist = async (movieId) => {
   if (isNaN(movieId)) {
-    throw new CustomError(400, `${key}가 잘못 되었습니다.`);
+    throw new CustomError(400, `movieId가 잘못 되었습니다.`);
   }
 
   const findMovie = await movieRepository.findById({ movieId });

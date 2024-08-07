@@ -13,7 +13,7 @@ export default {
 
     const { movieId } = req.params;
 
-    await MovieIdExist('movieId', movieId);
+    await MovieIdExist(movieId);
 
     const findMovie = await movieService.getMovieDetail({ movieId });
     res.json(movieConverter.toMovieDetail(findMovie));
@@ -23,7 +23,7 @@ export default {
     const { title, genre } = req.body;
 
     NotBlank("title", title);
-    MovieGenre('genre', genre);
+    MovieGenre(genre, genre);
 
     const newMovieId = await movieService.createMovie({ title, genre });
     res.json({
@@ -34,7 +34,7 @@ export default {
   deleteMovie: async (req, res, next) => {
     const { movieId } = req.body;
 
-    await MovieIdExist("movieId", movieId);
+    await MovieIdExist(movieId);
 
     await movieService.deleteMovie({ movieId });
     res.status(200).json({
