@@ -6,11 +6,11 @@ const movieRouter = express.Router({
   mergeParams: false,
 });
 
-movieRouter.get("/movie", movieController.getMovieList);
-movieRouter.get("/movie/:movieId", movieController.getMovieDetail);
+movieRouter.get("/", movieController.getMovieList);
+movieRouter.get("/:movieId", movieController.getMovieDetail);
 
-movieRouter.post("/movie", movieController.createMovie);
+movieRouter.post("/", movieController.createMovie);
 
-movieRouter.delete("/movie", movieController.deleteMovie);
+movieRouter.delete("/", movieController.deleteMovie);
 
 export default movieRouter;
