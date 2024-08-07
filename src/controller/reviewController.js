@@ -1,7 +1,11 @@
-import CustomError from "../error/CustomError.js";
 import reviewService from "../service/review/reviewService.js";
 import reviewConverter from "../converter/reviewConverter.js";
-import { InRange, NotBlank, NumberType, PageValid } from "../validator/commonValidator.js";
+import {
+  InRange,
+  NotBlank,
+  NumberType,
+  PageValid,
+} from "../validator/commonValidator.js";
 import { MovieIdExist } from "../validator/movieValidator.js";
 
 export default {
@@ -36,7 +40,7 @@ export default {
   getReviewByMovie: async (req, res, next) => {
     const { movieId } = req.params;
     const { page, pageSize, minRating = 0 } = req.query;
-    
+
     PageValid({ page, pageSize });
     InRange("minRating", minRating, 0, 5);
     await MovieIdExist(movieId);

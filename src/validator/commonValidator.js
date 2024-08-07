@@ -6,7 +6,7 @@ export const NotBlank = (key, value) => {
 };
 
 export const NumberType = (key, value) => {
-  if (isNaN(value)) return;
+  if (!isNaN(value)) return;
   throw new CustomError(400, `${key}는 숫자여야 합니다.`);
 };
 
@@ -17,8 +17,8 @@ export const Positive = (key, value) => {
 };
 
 export const PageValid = ({ page, pageSize }) => {
-  Positive("page", page);
-  Positive("pageSize", pageSize);
+  NumberType("page", page);
+  NumberType("pageSize", pageSize);
 };
 
 export const LessEqual = (key, value, max) => {
