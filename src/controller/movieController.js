@@ -1,7 +1,7 @@
 import movieService from "../service/movie/movieService.js";
-import CustomError from "../error/CustomError.js";
-import { MOVIE_GENRE } from "../db/tables.js";
 import movieConverter from "../converter/MovieConverter.js";
+import { NotBlank, PageValid } from "../validator/commonValidator.js";
+import { MovieGenre, MovieIdExist } from "../validator/movieValidator.js";
 
 export default {
   getMovieDetail: async (req, res, next) => {
@@ -13,9 +13,7 @@ export default {
 
     const { movieId } = req.params;
 
-    if (isNaN(movieId)) {
-      throw CustomError.BAD_REQUEST;
-    }
+    await MovieIdExist('movieId', movieId);
 
     const findMovie = await movieService.getMovieDetail({ movieId });
     res.json(movieConverter.toMovieDetail(findMovie));
@@ -24,14 +22,8 @@ export default {
   createMovie: async (req, res, next) => {
     const { title, genre } = req.body;
 
-    if (
-      typeof title !== "string" ||
-      title.trim().length === 0 ||
-      typeof genre !== "string" ||
-      !MOVIE_GENRE.includes(genre)
-    ) {
-      throw CustomError.BAD_REQUEST;
-    }
+    NotBlank("title", title);
+    MovieGenre('genre', genre);
 
     const newMovieId = await movieService.createMovie({ title, genre });
     res.json({
@@ -42,9 +34,7 @@ export default {
   deleteMovie: async (req, res, next) => {
     const { movieId } = req.body;
 
-    if (isNaN(movieId)) {
-      throw CustomError.BAD_REQUEST;
-    }
+    await MovieIdExist("movieId", movieId);
 
     await movieService.deleteMovie({ movieId });
     res.status(200).json({
@@ -55,9 +45,7 @@ export default {
   getMovieList: async (req, res, next) => {
     const { page, pageSize } = req.query;
 
-    if (isNaN(page) || isNaN(pageSize)) {
-      throw CustomError.BAD_REQUEST_PAGINATION;
-    }
+    PageValid({ page, pageSize });
 
     const findMovies = await movieService.getMovieList({ page, pageSize });
 
