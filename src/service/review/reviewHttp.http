@@ -3,7 +3,7 @@ POST http://localhost:4000/api/review
 Content-Type: application/json
 
 {
-  "movieId": 1,
+  "movieId": 7,
   "content": "이 영화 재밌네요!!",
   "rating" : 3
 }

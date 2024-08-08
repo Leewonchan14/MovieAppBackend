@@ -1,5 +1,5 @@
 import movieService from "../service/movie/movieService.js";
-import movieConverter from "../converter/MovieConverter.js";
+import movieConverter from "../converter/movieConverter.js";
 import { NotBlank, PageValid } from "../validator/commonValidator.js";
 import { MovieGenre, MovieIdExist } from "../validator/movieValidator.js";
 

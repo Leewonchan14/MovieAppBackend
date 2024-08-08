@@ -1,29 +1,30 @@
 import mysql from "mysql2/promise";
 import tables from "./tables.js";
 
-class DB {
+const { DB_URL, DB_USER, DB_PASSWORD } = process.env;
+
+export class DB {
   static pool = null;
 
   static getPool() {
-    if (!DB.pool) {
-      DB.pool = this.#getPool();
-    }
     return DB.pool;
   }
 
-  static #getPool = () => {
-    return mysql.createPool({
-      host: "localhost",
-      port: 3301,
-      user: "root",
-      password: "1234",
-      database: "express1",
+  static createPool({ DB_URL, DB_PORT, DB_USER, DB_PASSWORD, DB_DATABASE }) {
+    let pool = mysql.createPool({
+      host: DB_URL ?? "localhost",
+      port: DB_PORT ?? 3301,
+      user: DB_USER ?? "root",
+      password: DB_PASSWORD ?? "1234",
+      database: DB_DATABASE ?? "express1",
       waitForConnections: true,
       connectionLimit: 10,
       queueLimit: 0,
       maxIdle: 10,
     });
-  };
+    this.pool = pool;
+    return pool;
+  }
 }
 
 export default {
@@ -37,7 +38,7 @@ export default {
     try {
       for (let [table, schema] of Object.entries(tables)) {
         await DB.getPool().execute(schema);
-        console.log(`${table} table is created is not exist`);
+        console.log(`${table} table is created if not exist`);
       }
     } catch (error) {
       console.log("Error creating tables!");
