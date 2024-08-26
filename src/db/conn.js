@@ -21,6 +21,7 @@ export class DB {
       connectionLimit: 10,
       queueLimit: 0,
       maxIdle: 10,
+      timezone: '+09:00',
     });
     this.pool = pool;
     return pool;
